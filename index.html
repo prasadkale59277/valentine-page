@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #f7cbd4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 320px;
+  }
+
+  .bear {
+    font-size: 60px;
+  }
+
+  h2 {
+    margin: 15px 0 25px;
+  }
+
+  .buttons {
+    position: relative;
+    height: 70px;
+  }
+
+  button {
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  #no {
+    background: #e0e0e0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    display: none;
+    margin-top: 10px;
+  }
+
+  .yay {
+    display: none;
+    margin-top: 20px;
+  }
+
+  .yay h1 {
+    color: #ff4d6d;
+  }
+
+  .yay img {
+    width: 200px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="bear">🧸❤️</div>
+  <h2>Priya, will you be my Valentine?</h2>
+
+  <div class="buttons">
+    <button id="no">No</button>
+  </div>
+
+  <button id="yes">Yes</button>
+
+  <div class="yay" id="yay">
+    <h1>YAY! 🎉</h1>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+  </div>
+</div>
+
+<!-- 🔊 AUDIBLE SOUNDS -->
+<audio id="noSound" preload="auto"
+  src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<audio id="yesSound" preload="auto"
+  src="https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-1174.mp3"></audio>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const yay = document.getElementById("yay");
+
+  const noSound = document.getElementById("noSound");
+  const yesSound = document.getElementById("yesSound");
+
+  noSound.volume = 0.8;
+  yesSound.volume = 0.7;
+
+  let count = 0;
+
+  noBtn.addEventListener("mouseover", () => {
+    count++;
+
+    noSound.currentTime = 0;
+    noSound.play().catch(() => {});
+
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 120 - 60;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    if (count >= 3) {
+      yesBtn.style.display = "inline-block";
+    }
+  });
+
+  yesBtn.addEventListener("click", () => {
+    yesSound.currentTime = 0;
+    yesSound.play().catch(() => {});
+
+    yay.style.display = "block";
+    noBtn.style.display = "none";
+    yesBtn.style.display = "none";
+
+    setTimeout(() => {
+      const phone = "918237988582"; // change if needed
+      const message = "Hey ❤️ I would love to be your Valentine!";
+      const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, "_blank");
+    }, 1500);
+  });
+</script>
+
+</body>
+</html>
